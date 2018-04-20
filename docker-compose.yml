@@ -1,0 +1,21 @@
+version: "3"
+# Author: Haoji Liu
+services:
+  # user interface
+  client:
+    volumes:
+      - ./client/src:/srv/src
+    build: .
+    container_name: ottercoin_client
+    ports:
+      - "5000:5000" # for local to make grpc call to container
+    tty: true
+  # a blockchain node
+  server:
+    volumes:
+      - ./server/src:/srv/src
+    build: .
+    container_name: ottercoin_node
+    ports:
+      - "5000:5000" # for local to make grpc call to container
+    tty: true
